@@ -285,12 +285,12 @@
       </section>
 
       <section class="step" id="step2">
-        <div class="step-badge"><i class="fa-solid fa-user"></i> Step 2</div>
-        <div class="step-title">Staf yang bantu anda</div>
-        <div class="step-subtitle">Taip nama staf kami yang melayan anda. Nama ini akan dijadikan hashtag di hujung review.</div>
+        <div class="step-badge"><i class="fa-solid fa-id-badge"></i> Step 2</div>
+        <div class="step-title">Kod staf yang bantu anda</div>
+        <div class="step-subtitle">Taip kod staf yang melayan anda. Kod ini akan dijadikan hashtag di hujung review.</div>
         <div class="field">
-          <input type="text" id="staffInput" placeholder="Cth: Mus, Faris, Wan" autocomplete="off" oninput="hideStaffError()">
-          <div class="error-msg" id="errStaff">Sila taip nama staf.</div>
+          <input type="text" id="staffInput" placeholder="Cth: SH9861" autocomplete="off" autocapitalize="characters" oninput="cleanStaffCodeInput()">
+          <div class="error-msg" id="errStaff">Sila taip kod staf. Contoh: SH9861.</div>
         </div>
         <div class="nav-row">
           <button class="secondary-btn" onclick="goStep(1)">← Back</button>
@@ -414,7 +414,7 @@
   const PLACE_ID = "ChIJV_UaAZG6yDERBfK-vHdQRu8";
   const GOOGLE_MAPS_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
   
-  // Hashtag Wajib KPI S-Coin (Staff code akan disambung di hujung)
+  // Hashtag Wajib KPI S-Coin (Staff code hashtag akan disambung di hujung)
   const MANDATORY_HASHTAGS = "#SCoinRedemption #SCoin #SCoinCashback #Cashback";
 
   let currentStep = 1;
@@ -461,14 +461,19 @@
     setTimeout(() => goStep(2), 250);
   };
 
-  // Step 2: Manual staff name input
-  function hideStaffError() {
+  // Step 2: Manual staff code input
+  function cleanStaffCodeInput() {
+    const input = document.getElementById('staffInput');
+    input.value = input.value
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, '');
     document.getElementById('errStaff').style.display = 'none';
   }
 
   function checkStep2() {
-    const staffName = document.getElementById('staffInput').value.trim();
-    if(staffName === "") {
+    cleanStaffCodeInput();
+    const staffCode = document.getElementById('staffInput').value.trim();
+    if(staffCode === "") {
       document.getElementById('errStaff').style.display = 'block';
     } else { goStep(3); }
   }
@@ -621,19 +626,18 @@
   /* =========================================
      STEP 5: PREVIEW & COPY
      ========================================= */
-  function makeStaffHashtag(name) {
-    const cleanName = name
+  function makeStaffHashtag(code) {
+    const cleanCode = code
       .trim()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-zA-Z0-9]/g, '');
-    return cleanName ? "#" + cleanName : "";
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g, '');
+    return cleanCode ? "#" + cleanCode : "";
   }
 
   function prepareFinalReview() {
     const mainText = document.getElementById('finalCommentText').value;
-    const staffName = document.getElementById('staffInput').value;
-    const staffTag = makeStaffHashtag(staffName);
+    const staffCode = document.getElementById('staffInput').value;
+    const staffTag = makeStaffHashtag(staffCode);
     
     document.getElementById('mockReviewText').innerText = mainText;
     // Menggabungkan hashtag rasmi dengan hashtag staf
