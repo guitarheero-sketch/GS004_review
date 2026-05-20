@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Grand Senheng Temerloh Review Helper</title>
+  <title>Grand Senheng Sri Dagangan Kuantan Review Helper</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
@@ -254,7 +254,7 @@
   <div class="hero">
     <div class="hero-inner">
       <h1><span class="icon-wrap"><i class="fa-solid fa-star"></i></span> Review Helper</h1>
-      <p>Kongsi pengalaman menarik anda bersama S-Coin di Grand Senheng Temerloh.</p>
+      <p>Kongsi pengalaman menarik anda bersama S-Coin di Grand Senheng Sri Dagangan Kuantan.</p>
     </div>
   </div>
 
@@ -287,19 +287,10 @@
       <section class="step" id="step2">
         <div class="step-badge"><i class="fa-solid fa-user"></i> Step 2</div>
         <div class="step-title">Staf yang bantu anda</div>
-        <div class="step-subtitle">Pilih nama staf kami yang melayan anda.</div>
+        <div class="step-subtitle">Taip nama staf kami yang melayan anda. Nama ini akan dijadikan hashtag di hujung review.</div>
         <div class="field">
-          <select id="staffSelect">
-            <option value="">-- Sila pilih nama staf --</option>
-            <option value="SH9861">Mus</option>
-            <option value="SH19800">Faris</option>
-            <option value="SH18556">Omar</option>
-            <option value="SH20201">Wan</option>
-            <option value="SH20420">Kim</option>
-            <option value="SH20581">Anisa</option>
-            <option value="SH20679">Na'im</option>
-          </select>
-          <div class="error-msg" id="errStaff">Sila pilih nama staf.</div>
+          <input type="text" id="staffInput" placeholder="Cth: Mus, Faris, Wan" autocomplete="off" oninput="hideStaffError()">
+          <div class="error-msg" id="errStaff">Sila taip nama staf.</div>
         </div>
         <div class="nav-row">
           <button class="secondary-btn" onclick="goStep(1)">← Back</button>
@@ -420,7 +411,7 @@
   /* =========================================
      KONFIGURASI PENTING
      ========================================= */
-  const PLACE_ID = "ChIJhUovtuy4zjERZlW96Pgwgec";
+  const PLACE_ID = "ChIJV_UaAZG6yDERBfK-vHdQRu8";
   const GOOGLE_MAPS_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
   
   // Hashtag Wajib KPI S-Coin (Staff code akan disambung di hujung)
@@ -470,16 +461,24 @@
     setTimeout(() => goStep(2), 250);
   };
 
-  // Auto-advance Step 2
-  document.getElementById('staffSelect').addEventListener('change', function() {
+  // Step 2: Manual staff name input
+  function hideStaffError() {
     document.getElementById('errStaff').style.display = 'none';
-    if(this.value !== "") setTimeout(() => goStep(3), 250);
-  });
+  }
+
   function checkStep2() {
-    if(document.getElementById('staffSelect').value === "") {
+    const staffName = document.getElementById('staffInput').value.trim();
+    if(staffName === "") {
       document.getElementById('errStaff').style.display = 'block';
     } else { goStep(3); }
   }
+
+  document.getElementById('staffInput').addEventListener('keydown', function(e) {
+    if(e.key === 'Enter') {
+      e.preventDefault();
+      checkStep2();
+    }
+  });
 
   /* =========================================
      FORMAT HARGA PINTAR (STEP 3)
@@ -622,13 +621,23 @@
   /* =========================================
      STEP 5: PREVIEW & COPY
      ========================================= */
+  function makeStaffHashtag(name) {
+    const cleanName = name
+      .trim()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9]/g, '');
+    return cleanName ? "#" + cleanName : "";
+  }
+
   function prepareFinalReview() {
     const mainText = document.getElementById('finalCommentText').value;
-    const staffTag = "#" + document.getElementById('staffSelect').value;
+    const staffName = document.getElementById('staffInput').value;
+    const staffTag = makeStaffHashtag(staffName);
     
     document.getElementById('mockReviewText').innerText = mainText;
     // Menggabungkan hashtag rasmi dengan hashtag staf
-    document.getElementById('mockHashtags').innerText = MANDATORY_HASHTAGS + " " + staffTag;
+    document.getElementById('mockHashtags').innerText = staffTag ? (MANDATORY_HASHTAGS + " " + staffTag) : MANDATORY_HASHTAGS;
   }
 
   function copyAndProceed() {
