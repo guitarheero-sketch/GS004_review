@@ -4,667 +4,755 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Grand Senheng Sri Dagangan Kuantan Review Helper</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* ── Variables ──────────────────────────────────── */
     :root {
-      --red:          #c0392b;
-      --red-dark:     #96281b;
-      --red-deeper:   #7b2012;
-      --red-light:    #e74c3c;
-      --red-faint:    #fff0ee;
-      --red-tint:     #fde8e6;
-      --red-border:   #f5c6c2;
-      --red-mid:      #f1a9a3;
-      --green:        #15803d;
-      --green-faint:  #dcfce7;
-      --white:        #ffffff;
-      --off-white:    #fafafa;
-      --text:         #1a0a08;
-      --text-mid:     #5c2318;
-      --text-soft:    #8c3a2c;
-      --text-muted:   #a05040;
+      --brand: #b91c1c;
+      --brand-dark: #7f1d1d;
+      --brand-soft: #fee2e2;
+      --brand-pale: #fff5f5;
+      --ink: #201314;
+      --muted: #7a5b5d;
+      --line: #efd6d6;
+      --paper: #ffffff;
+      --bg: #fff8f1;
+      --gold: #fbbf24;
+      --green: #15803d;
+      --green-soft: #dcfce7;
+      --shadow: 0 18px 45px rgba(127, 29, 29, .14);
+      --radius: 26px;
     }
 
-    /* ── Reset & Base ───────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html, body { margin: 0; padding: 0; }
-
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-      background: #fdf5f4;
-      color: var(--text);
-      line-height: 1.45;
-      padding-bottom: 40px;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(251, 191, 36, .18), transparent 34%),
+        radial-gradient(circle at top right, rgba(185, 28, 28, .18), transparent 30%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      padding: 14px;
     }
 
-    /* ── Hero ───────────────────────────────────────── */
-    .hero {
-      background: linear-gradient(140deg, var(--red-deeper) 0%, var(--red) 55%, var(--red-light) 100%);
-      color: var(--white);
-      padding: 24px 16px 68px;
-      border-radius: 0 0 28px 28px;
-      box-shadow: 0 12px 28px rgba(150, 30, 20, 0.30);
+    .shell { max-width: 760px; margin: 0 auto; }
+
+    .top-card {
       position: relative;
       overflow: hidden;
+      border-radius: 30px;
+      padding: 22px;
+      color: white;
+      background: linear-gradient(135deg, var(--brand-dark), var(--brand) 58%, #ef4444);
+      box-shadow: var(--shadow);
     }
-    .hero-inner { max-width: 700px; margin: 0 auto; position: relative; }
-    .hero h1 {
-      margin: 0 0 8px; font-size: 1.38rem; font-weight: 800; line-height: 1.2;
-      display: flex; align-items: center; gap: 10px;
+    .top-card::after {
+      content: "";
+      position: absolute;
+      right: -45px;
+      top: -55px;
+      width: 160px;
+      height: 160px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
     }
-    .hero h1 .icon-wrap {
-      width: 36px; height: 36px; background: rgba(255,255,255,0.18);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 1rem;
+    .outlet-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin-bottom: 14px;
     }
-    .hero p { margin: 0; font-size: 0.9rem; opacity: 0.92; }
+    .top-card h1 {
+      position: relative;
+      margin: 0 0 8px;
+      font-size: clamp(1.42rem, 4.8vw, 2.2rem);
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      font-weight: 800;
+      z-index: 1;
+    }
+    .top-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 560px;
+      font-size: .94rem;
+      opacity: .92;
+    }
 
-    /* ── Wrap ───────────────────────────────────────── */
-    .wrap {
-      max-width: 700px; margin: -38px auto 0; padding: 0 12px;
+    .panel {
+      margin-top: 14px;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(239, 214, 214, .9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    /* ── Wizard Card ────────────────────────────────── */
-    .wizard-card {
-      background: var(--white); border-radius: 24px;
-      box-shadow: 0 14px 32px rgba(150, 30, 20, 0.10); overflow: hidden;
+    .step-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      padding: 14px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
     }
+    .dot {
+      min-height: 8px;
+      border-radius: 999px;
+      background: #f4dada;
+      transition: .25s ease;
+    }
+    .dot.active { background: linear-gradient(90deg, var(--brand-dark), var(--gold)); }
 
-    /* ── Progress ───────────────────────────────────── */
-    .progress-wrap { padding: 18px 16px 0; }
-    .progress-top {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 12px; margin-bottom: 10px;
-    }
-    .progress-label   { font-size: 0.82rem; font-weight: 800; color: var(--red); }
-    .progress-step-text { font-size: 0.78rem; color: var(--text-muted); font-weight: 700; }
-    .progress-bar {
-      height: 8px; background: var(--red-tint); border-radius: 999px; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%; width: 20%; background: linear-gradient(90deg, var(--red-dark), var(--red-light));
-      border-radius: 999px; transition: width .3s ease;
-    }
-
-    /* ── Steps ──────────────────────────────────────── */
-    .step {
-      display: none; padding: 18px 16px 18px; animation: fadeSlide .25s ease;
-    }
+    .content { padding: 18px; }
+    .step { display: none; animation: show .22s ease; }
     .step.active { display: block; }
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .step-badge {
-      display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px;
-      background: var(--red-faint); color: var(--red); border-radius: 999px;
-      font-size: 0.78rem; font-weight: 800; margin-bottom: 14px; border: 1px solid var(--red-border);
-    }
-    .step-title   { font-size: 1.15rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
-    .step-subtitle { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 18px; line-height: 1.55; }
+    @keyframes show { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ── Grid & Layouts ─────────────────────────────── */
-    .mode-grid     { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
-    .grid-2        { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
-    .grid-3        { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
-    .nav-row       { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; margin-top: 18px; }
+    .step-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .step-no {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      background: var(--brand-pale);
+      border: 1px solid var(--line);
+      color: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+    .step-title { margin: 0; font-size: 1.13rem; font-weight: 800; letter-spacing: -.02em; }
+    .step-desc { margin: 3px 0 0; color: var(--muted); font-size: .88rem; }
 
-    /* ── Buttons ────────────────────────────────────── */
-    .mode-btn {
-      border: 2px solid var(--red-border); background: var(--white);
-      border-radius: 20px; padding: 16px; text-align: left; cursor: pointer;
-      transition: all .2s ease;
+    .choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .choice {
+      border: 2px solid var(--line);
+      background: #fff;
+      border-radius: 22px;
+      padding: 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: .2s ease;
+      min-height: 128px;
     }
-    .mode-btn.active {
-      border-color: var(--red); background: var(--red-faint);
-      box-shadow: 0 6px 18px rgba(192, 57, 43, 0.14);
+    .choice:hover, .choice.active {
+      border-color: var(--brand);
+      background: linear-gradient(180deg, #fff, var(--brand-pale));
+      transform: translateY(-1px);
     }
-    .mode-btn strong { display: block; font-size: 0.97rem; margin-bottom: 5px; color: var(--text); font-weight: 700; }
-    .mode-btn span   { display: block; font-size: 0.81rem; color: var(--text-muted); }
+    .choice .emoji { font-size: 1.8rem; margin-bottom: 10px; }
+    .choice strong { display: block; font-size: 1rem; margin-bottom: 6px; }
+    .choice span { color: var(--muted); font-size: .84rem; }
 
-    button { font-family: inherit; }
-    .primary-btn, .secondary-btn, .soft-btn {
-      border: none; border-radius: 999px; font-weight: 700; cursor: pointer;
-      transition: all .2s ease; width: 100%; padding: 14px 16px; font-size: 0.95rem;
+    .field { margin-bottom: 12px; }
+    label { display: block; font-weight: 800; font-size: .82rem; margin-bottom: 7px; color: #4a2426; }
+    input, textarea {
+      width: 100%;
+      border: 2px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 18px;
+      padding: 14px 15px;
+      font: inherit;
+      outline: none;
+      transition: .2s ease;
     }
-    .primary-btn {
-      background: var(--red); color: var(--white); box-shadow: 0 6px 18px rgba(192, 57, 43, 0.30);
+    input:focus, textarea:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px rgba(185, 28, 28, .10);
     }
-    .primary-btn:hover { background: var(--red-dark); }
-    .primary-btn:active { transform: scale(0.98); }
-    
-    .secondary-btn {
-      background: var(--red-faint); color: var(--red-dark); border: 1px solid var(--red-border);
-    }
-    .secondary-btn:hover { background: var(--red-tint); }
+    textarea { min-height: 128px; resize: vertical; }
+    .hint { margin-top: 7px; color: var(--muted); font-size: .78rem; }
 
-    .soft-btn {
-      background: var(--off-white); color: var(--text-muted); border: 1px solid #e5e5e5;
-      padding: 10px 14px; font-size: 0.85rem;
+    .input-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    .input-row.two { grid-template-columns: 1fr 1fr; }
+    .money-wrap { position: relative; }
+    .money-wrap b {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: .9rem;
     }
+    .money-wrap input { padding-left: 44px; }
 
-    /* ── Fields ─────────────────────────────────────── */
-    .field { margin-bottom: 0; }
-    .field label {
-      display: block; font-size: 0.83rem; font-weight: 700; margin-bottom: 7px; color: var(--text-mid);
+    .impact-box {
+      display: none;
+      margin: 14px 0 0;
+      padding: 13px 14px;
+      border-radius: 18px;
+      background: var(--green-soft);
+      color: var(--green);
+      border: 1px solid #bbf7d0;
+      font-weight: 800;
+      text-align: center;
     }
-    .field input, .field select, .field textarea {
-      width: 100%; border: 2px solid var(--red-border); border-radius: 16px;
-      padding: 13px 14px; font: inherit; background: var(--white); color: var(--text);
-      transition: all .2s;
-    }
-    .field input:focus, .field select:focus, .field textarea:focus {
-      outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.12);
-    }
-    .prefix { position: relative; }
-    .prefix span {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      font-size: 0.9rem; font-weight: 700; color: var(--text-muted); pointer-events: none;
-    }
-    .prefix input { padding-left: 42px; }
+    .impact-box.show { display: block; }
 
-    /* ── Wow Factor & UI Alerts ─────────────────────── */
-    .wow-factor {
-      display: none; margin-top: 14px; padding: 12px 14px;
-      background: var(--green-faint); border-radius: 14px;
-      border: 1px solid #bbf7d0; color: var(--green);
-      font-size: 0.9rem; font-weight: 600; text-align: center;
-      animation: popIn .3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .wow-factor.visible { display: block; }
-    
-    .error-msg {
-      display: none; margin-top: 6px; font-size: 0.8rem; color: var(--red); font-weight: 600;
-    }
-
-    /* ── Comments Selection ─────────────────────────── */
-    .comments-grid { display: grid; gap: 10px; }
+    .template-toolbar { display: flex; gap: 10px; margin-bottom: 12px; }
+    .comment-list { display: grid; gap: 10px; }
     .comment-card {
-      border: 1.5px solid var(--red-border); background: var(--white);
-      border-radius: 16px; padding: 13px 15px; font-size: 0.91rem;
-      cursor: pointer; transition: all .2s ease;
+      border: 1.5px solid var(--line);
+      background: #fff;
+      border-radius: 18px;
+      padding: 14px;
+      cursor: pointer;
+      font-size: .92rem;
+      transition: .18s ease;
     }
-    .comment-card.selected {
-      border-color: var(--red); background: var(--red-faint);
-    }
-
-    .edit-comment-area {
-      width: 100%; min-height: 100px; margin-top: 15px;
-      border: 2px dashed var(--red-mid); background: var(--white);
-      border-radius: 16px; padding: 14px; font-size: 0.95rem; line-height: 1.5;
-      resize: vertical; font-family: inherit;
-    }
-    .edit-comment-area:focus {
-      border-style: solid; border-color: var(--red); outline: none;
+    .comment-card:hover, .comment-card.selected {
+      border-color: var(--brand);
+      background: var(--brand-pale);
     }
 
-    /* ── Step 5: Mock Google Review ─────────────────── */
-    .google-mock {
-      background: var(--white); border: 1px solid #e5e5e5; border-radius: 16px;
-      padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    .review-preview {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: 0 10px 24px rgba(127, 29, 29, .08);
     }
-    .google-mock-header {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+    .review-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #6b7280;
     }
-    .google-mock-avatar {
-      width: 36px; height: 36px; background: #e8eaed; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; color: #5f6368;
-    }
-    .google-mock-stars { color: #fbbc04; font-size: 1.1rem; letter-spacing: 2px; }
-    .google-mock-body {
-      font-size: 0.95rem; color: #202124; line-height: 1.5; white-space: pre-wrap;
-    }
-    .google-mock-hashtags {
-      margin-top: 10px; font-size: 0.85rem; color: #1a73e8; font-weight: 500;
-    }
-    .photo-reminder {
-      margin-top: 14px; padding: 10px; background: #fff8e1; border-radius: 10px;
-      font-size: 0.85rem; color: #b45309; font-weight: 600; display: flex; align-items: center; gap: 8px;
+    .stars { color: #f59e0b; letter-spacing: 2px; font-size: 1.08rem; }
+    .review-body { white-space: pre-wrap; color: #27272a; font-size: .95rem; }
+    .review-tags { margin-top: 12px; color: #2563eb; font-weight: 700; font-size: .87rem; word-break: break-word; }
+    .photo-note {
+      margin-top: 14px;
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      font-weight: 700;
+      font-size: .84rem;
     }
 
-    /* ── Modal ──────────────────────────────────────── */
+    .nav-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    button { font-family: inherit; }
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 16px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: .94rem;
+      transition: .18s ease;
+      width: 100%;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 9px 22px rgba(185, 28, 28, .24); }
+    .btn-primary:hover { background: var(--brand-dark); }
+    .btn-soft { background: var(--brand-pale); color: var(--brand-dark); border: 1px solid var(--line); }
+    .btn-light { background: #fff; color: var(--brand-dark); border: 1px solid var(--line); padding: 11px 14px; font-size: .84rem; }
+
+    .error {
+      display: none;
+      margin-top: 7px;
+      color: var(--brand);
+      font-size: .8rem;
+      font-weight: 800;
+    }
+
     .modal {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
-      display: none; align-items: center; justify-content: center; padding: 20px; z-index: 999;
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.58);
+      padding: 18px;
+      z-index: 99;
     }
     .modal.show { display: flex; }
-    .modal-content {
-      background: white; width: 100%; max-width: 360px; padding: 24px;
-      border-radius: 24px; text-align: center; animation: popIn .3s ease;
+    .modal-box {
+      max-width: 380px;
+      width: 100%;
+      background: white;
+      border-radius: 28px;
+      padding: 24px;
+      text-align: center;
+      animation: pop .22s ease;
     }
+    @keyframes pop { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
     .modal-icon {
-      width: 60px; height: 60px; background: var(--green-faint); color: var(--green);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; margin: 0 auto 16px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 13px;
+      font-size: 1.8rem;
+      font-weight: 800;
     }
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to   { opacity: 1; transform: scale(1); }
-    }
+    .modal-box h3 { margin: 0 0 8px; font-size: 1.22rem; }
+    .modal-box p { margin: 0 0 18px; color: var(--muted); font-size: .9rem; }
 
     @media (max-width: 640px) {
-      .mode-grid, .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      body { padding: 10px; }
+      .top-card { padding: 20px; border-radius: 26px; }
+      .content { padding: 15px; }
+      .choice-grid, .input-row, .input-row.two { grid-template-columns: 1fr; }
+      .choice { min-height: auto; }
+      .nav-row { grid-template-columns: 1fr; }
+      .step-strip { gap: 6px; padding: 12px; }
     }
   </style>
 </head>
 <body>
+  <main class="shell">
+    <section class="top-card">
+      <div class="outlet-pill">⭐ Review Helper · S-Coin</div>
+      <h1>Grand Senheng Sri Dagangan Kuantan</h1>
+      <p>Tulis review S-Coin anda dengan mudah. Pilih pengalaman anda, semak ayat, kemudian copy untuk Google Review.</p>
+    </section>
 
-  <div class="hero">
-    <div class="hero-inner">
-      <h1><span class="icon-wrap"><i class="fa-solid fa-star"></i></span> Review Helper</h1>
-      <p>Kongsi pengalaman menarik anda bersama S-Coin di Grand Senheng Sri Dagangan Kuantan.</p>
-    </div>
-  </div>
-
-  <div class="wrap">
-    <div class="wizard-card">
-      <div class="progress-wrap">
-        <div class="progress-top">
-          <div class="progress-label">Langkah demi langkah</div>
-          <div class="progress-step-text" id="progressText">Step 1 of 5</div>
-        </div>
-        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <section class="panel">
+      <div class="step-strip" aria-label="Progress">
+        <div class="dot active" data-dot="1"></div>
+        <div class="dot" data-dot="2"></div>
+        <div class="dot" data-dot="3"></div>
+        <div class="dot" data-dot="4"></div>
+        <div class="dot" data-dot="5"></div>
       </div>
 
-      <section class="step active" id="step1">
-        <div class="step-badge"><i class="fa-solid fa-layer-group"></i> Step 1</div>
-        <div class="step-title">Pilih jenis transaksi anda</div>
-        <div class="step-subtitle">Tekan salah satu, sistem akan terus ke langkah seterusnya.</div>
-        <div class="mode-grid">
-          <button class="mode-btn active" id="btnModeEarn" type="button">
-            <strong>💰 Beli &amp; Dapat S-Coin</strong>
-            <span>Anda beli barang dan terima S-Coin cashback</span>
-          </button>
-          <button class="mode-btn" id="btnModeRedeem" type="button">
-            <strong>🎁 Redeem S-Coin</strong>
-            <span>Anda tebus S-Coin yang sedia ada</span>
-          </button>
-        </div>
-      </section>
-
-      <section class="step" id="step2">
-        <div class="step-badge"><i class="fa-solid fa-id-badge"></i> Step 2</div>
-        <div class="step-title">Kod staf yang bantu anda</div>
-        <div class="step-subtitle">Taip kod staf yang melayan anda. Kod ini akan dijadikan hashtag di hujung review.</div>
-        <div class="field">
-          <input type="text" id="staffInput" placeholder="Cth: SH9861" autocomplete="off" autocapitalize="characters" oninput="cleanStaffCodeInput()">
-          <div class="error-msg" id="errStaff">Sila taip kod staf. Contoh: SH9861.</div>
-        </div>
-        <div class="nav-row">
-          <button class="secondary-btn" onclick="goStep(1)">← Back</button>
-          <button class="primary-btn" onclick="checkStep2()">Next →</button>
-        </div>
-      </section>
-
-      <section class="step" id="step3">
-        <div class="step-badge"><i class="fa-solid fa-pen"></i> Step 3</div>
-        <div class="step-title">Isi maklumat belian</div>
-        <div class="step-subtitle">Maklumat ini akan diserap ke dalam ayat review secara automatik.</div>
-        
-        <div id="earnFields">
-          <div class="grid-3">
-            <div class="field">
-              <label>Barang Dibeli</label>
-              <input type="text" id="earnItem" placeholder="Cth: TV, Peti Ais" oninput="calcWow()">
+      <div class="content">
+        <section class="step active" id="step1">
+          <div class="step-head">
+            <div class="step-no">1</div>
+            <div>
+              <h2 class="step-title">Pilih jenis pengalaman</h2>
+              <p class="step-desc">Pilih pengalaman S-Coin anda hari ini.</p>
             </div>
-            <div class="field">
-              <label>Harga Barang</label>
-              <div class="prefix">
-                <span>RM</span>
-                <input type="text" inputmode="decimal" id="earnPrice" placeholder="0.00">
+          </div>
+
+          <div class="choice-grid">
+            <button class="choice active" type="button" id="btnEarn">
+              <div class="emoji">💰</div>
+              <strong>Beli & dapat S-Coin</strong>
+              <span>Untuk pembelian yang memberikan cashback S-Coin.</span>
+            </button>
+            <button class="choice" type="button" id="btnRedeem">
+              <div class="emoji">🎁</div>
+              <strong>Redeem S-Coin</strong>
+              <span>Untuk tebusan atau penjimatan menggunakan S-Coin.</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="step" id="step2">
+          <div class="step-head">
+            <div class="step-no">2</div>
+            <div>
+              <h2 class="step-title">Masukkan kod staf yang membantu anda</h2>
+              <p class="step-desc">Kod ini akan dimasukkan sebagai hashtag di hujung review anda.</p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="staffCode">Kod staf</label>
+            <input id="staffCode" type="text" placeholder="Cth: SH9861" autocomplete="off" inputmode="text" />
+            <div class="hint">Anda boleh taip SH9861, #SH9861, atau nombor sahaja seperti 9861.</div>
+            <div class="error" id="errStaff">Sila masukkan kod staf.</div>
+          </div>
+
+          <div class="nav-row">
+            <button class="btn btn-soft" type="button" onclick="goStep(1)">← Kembali</button>
+            <button class="btn btn-primary" type="button" onclick="checkStep2()">Seterusnya →</button>
+          </div>
+        </section>
+
+        <section class="step" id="step3">
+          <div class="step-head">
+            <div class="step-no">3</div>
+            <div>
+              <h2 class="step-title">Isi maklumat ringkas</h2>
+              <p class="step-desc">Maklumat ini akan dimasukkan secara automatik ke dalam ayat review anda.</p>
+            </div>
+          </div>
+
+          <div id="earnFields">
+            <div class="input-row">
+              <div class="field">
+                <label for="earnItem">Barang dibeli</label>
+                <input id="earnItem" type="text" placeholder="Cth: TV, peti ais" oninput="calcImpact()" />
+              </div>
+              <div class="field">
+                <label for="earnPrice">Harga barang</label>
+                <div class="money-wrap"><b>RM</b><input id="earnPrice" type="text" inputmode="decimal" placeholder="0.00" /></div>
+              </div>
+              <div class="field">
+                <label for="earnPercent">S-Coin cashback (%)</label>
+                <input id="earnPercent" type="number" placeholder="Cth: 50" oninput="calcImpact()" />
               </div>
             </div>
-            <div class="field">
-              <label>S-Coin Cashback (%)</label>
-              <input type="number" id="earnPercent" placeholder="Cth: 50" oninput="calcWow()">
+          </div>
+
+          <div id="redeemFields" style="display:none;">
+            <div class="input-row two">
+              <div class="field">
+                <label for="redeemItem">Barang ditebus</label>
+                <input id="redeemItem" type="text" placeholder="Cth: blender, kettle" oninput="calcImpact()" />
+              </div>
+              <div class="field">
+                <label for="redeemPoints">Jumlah S-Coin ditebus</label>
+                <input id="redeemPoints" type="number" placeholder="Cth: 5000" oninput="calcImpact()" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div id="redeemFields" style="display: none;">
-          <div class="grid-2">
-            <div class="field">
-              <label>Barang Ditebus</label>
-              <input type="text" id="redeemItem" placeholder="Cth: Blender" oninput="calcWow()">
-            </div>
-            <div class="field">
-              <label>Jumlah S-Coin Ditebus</label>
-              <input type="number" id="redeemPoints" placeholder="Cth: 5000" oninput="calcWow()">
-            </div>
+          <div class="impact-box" id="impactBox"></div>
+          <div class="error" id="errStep3">Sila isi semua ruangan yang diperlukan dengan betul.</div>
+
+          <div class="nav-row">
+            <button class="btn btn-soft" type="button" onclick="goStep(2)">← Kembali</button>
+            <button class="btn btn-primary" type="button" onclick="checkStep3()">Seterusnya →</button>
           </div>
-        </div>
+        </section>
 
-        <div class="wow-factor" id="wowFactor"></div>
-        <div class="error-msg" id="errStep3">Sila isi semua ruangan dengan betul.</div>
-
-        <div class="nav-row">
-          <button class="secondary-btn" onclick="goStep(2)">← Back</button>
-          <button class="primary-btn" onclick="checkStep3()">Next →</button>
-        </div>
-      </section>
-
-      <section class="step" id="step4">
-        <div class="step-badge"><i class="fa-regular fa-message"></i> Step 4</div>
-        <div class="step-title">Pilih komen anda</div>
-        <div class="step-subtitle">Pilih template di bawah. Anda boleh edit atau tambah ayat terus di dalam kotak jika mahu.</div>
-        
-        <div style="display: flex; gap:10px; margin-bottom: 12px;">
-          <button class="soft-btn" onclick="loadTemplates()"><i class="fa-solid fa-shuffle"></i> Tukar Pilihan</button>
-        </div>
-        
-        <div class="comments-grid" id="commentList"></div>
-
-        <textarea id="finalCommentText" class="edit-comment-area" placeholder="Ayat review akan muncul di sini. Boleh edit kalau nak tambah apa-apa..."></textarea>
-        <div class="error-msg" id="errStep4">Sila pilih komen atau taip sesuatu.</div>
-
-        <div class="nav-row">
-          <button class="secondary-btn" onclick="goStep(3)">← Back</button>
-          <button class="primary-btn" onclick="checkStep4()">Next →</button>
-        </div>
-      </section>
-
-      <section class="step" id="step5">
-        <div class="step-badge"><i class="fa-regular fa-eye"></i> Step 5</div>
-        <div class="step-title">Siap untuk di-copy!</div>
-        <div class="step-subtitle">Semak review akhir. Sistem akan automatik menyalin hashtag rasmi S-Coin di hujung ayat anda.</div>
-        
-        <div class="google-mock">
-          <div class="google-mock-header">
-            <div class="google-mock-avatar"><i class="fa-solid fa-user"></i></div>
+        <section class="step" id="step4">
+          <div class="step-head">
+            <div class="step-no">4</div>
             <div>
-              <div style="font-size: 0.85rem; font-weight: 700;">Nama Anda</div>
-              <div class="google-mock-stars">★★★★★</div>
+              <h2 class="step-title">Pilih ayat review</h2>
+              <p class="step-desc">Pilih satu ayat yang anda suka. Anda juga boleh edit supaya lebih kena dengan pengalaman anda.</p>
             </div>
           </div>
-          <div class="google-mock-body" id="mockReviewText"></div>
-          <div class="google-mock-hashtags" id="mockHashtags"></div>
-          
-          <div class="photo-reminder">
-            <i class="fa-solid fa-camera-retro"></i> Kalau tak keberatan, kongsikan gambar barang anda sekali dalam review. Terima kasih!
+
+          <div class="template-toolbar">
+            <button class="btn btn-light" type="button" onclick="loadTemplates()">🔄 Tukar pilihan ayat</button>
           </div>
-        </div>
 
-        <div class="nav-row">
-          <button class="secondary-btn" onclick="goStep(4)">← Back</button>
-          <button class="primary-btn" onclick="copyAndProceed()"><i class="fa-regular fa-copy"></i> Copy & Buka Google</button>
-        </div>
-      </section>
+          <div class="comment-list" id="commentList"></div>
 
-    </div>
-  </div>
+          <div class="field" style="margin-top:14px;">
+            <label for="finalCommentText">Ayat akhir</label>
+            <textarea id="finalCommentText" placeholder="Pilih ayat cadangan atau tulis review anda sendiri di sini..."></textarea>
+            <div class="error" id="errStep4">Sila pilih komen atau taip review sendiri.</div>
+          </div>
+
+          <div class="nav-row">
+            <button class="btn btn-soft" type="button" onclick="goStep(3)">← Kembali</button>
+            <button class="btn btn-primary" type="button" onclick="checkStep4()">Seterusnya →</button>
+          </div>
+        </section>
+
+        <section class="step" id="step5">
+          <div class="step-head">
+            <div class="step-no">5</div>
+            <div>
+              <h2 class="step-title">Semak & copy review</h2>
+              <p class="step-desc">Review anda akan disalin bersama hashtag rasmi dan hashtag kod staf.</p>
+            </div>
+          </div>
+
+          <div class="review-preview">
+            <div class="review-top">
+              <div class="avatar">G</div>
+              <div>
+                <strong>Google Review</strong>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <div class="review-body" id="mockReviewText"></div>
+            <div class="review-tags" id="mockHashtags"></div>
+            <div class="photo-note">📸 Jika mahu, anda boleh tambah gambar barang dalam Google Review supaya review lebih lengkap dan membantu orang lain.</div>
+          </div>
+
+          <div class="nav-row">
+            <button class="btn btn-soft" type="button" onclick="goStep(4)">← Kembali</button>
+            <button class="btn btn-primary" type="button" onclick="copyAndProceed()">Copy & buka Google</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
 
   <div class="modal" id="successModal">
-    <div class="modal-content">
-      <div class="modal-icon"><i class="fa-solid fa-check"></i></div>
-      <h3 style="margin:0 0 10px; font-weight: 800;">Komen Di-copy!</h3>
-      <p style="font-size: 0.9rem; color: #555; margin-bottom: 20px;">
-        Ayat berserta hashtag wajib telah berjaya di-copy. Anda akan dibawa terus ke aplikasi Google Maps. Jangan lupa berikan kami 5 Bintang ya! ⭐
-      </p>
-      <button class="primary-btn" onclick="openGoogleMaps()">Buka Google Maps Sekarang</button>
-      <button class="soft-btn" style="margin-top: 10px;" onclick="closeModal()">Tutup</button>
+    <div class="modal-box">
+      <div class="modal-icon">✓</div>
+      <h3>Review sudah di-copy</h3>
+      <p>Paste review tadi di Google Maps dan jangan lupa pilih lima bintang ya.</p>
+      <button class="btn btn-primary" type="button" onclick="openGoogleMaps()">Buka Google Maps</button>
+      <button class="btn btn-light" type="button" style="margin-top:10px;" onclick="closeModal()">Tutup</button>
     </div>
   </div>
 
 <script>
-  /* =========================================
-     KONFIGURASI PENTING
-     ========================================= */
   const PLACE_ID = "ChIJV_UaAZG6yDERBfK-vHdQRu8";
   const GOOGLE_MAPS_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
-  
-  // Hashtag Wajib KPI S-Coin (Staff code hashtag akan disambung di hujung)
   const MANDATORY_HASHTAGS = "#SCoinRedemption #SCoin #SCoinCashback #Cashback";
 
   let currentStep = 1;
-  let mode = 'earn'; 
+  let mode = "earn";
   let rawPrice = 0;
   let allComments = { earn: [], redeem: [] };
 
-  // DOM Elements
-  const steps = document.querySelectorAll('.step');
-  const fill = document.getElementById('progressFill');
-  const text = document.getElementById('progressText');
-  const earnPriceInput = document.getElementById('earnPrice');
+  const steps = document.querySelectorAll(".step");
+  const dots = document.querySelectorAll(".dot");
+  const earnPriceInput = document.getElementById("earnPrice");
 
-  /* =========================================
-     LOGIK AUTO-ADVANCE & NAVIGATION
-     ========================================= */
   function goStep(n) {
-    steps.forEach(s => s.classList.remove('active'));
-    document.getElementById(`step${n}`).classList.add('active');
+    steps.forEach(step => step.classList.remove("active"));
+    document.getElementById(`step${n}`).classList.add("active");
+    dots.forEach(dot => dot.classList.toggle("active", Number(dot.dataset.dot) <= n));
     currentStep = n;
-    fill.style.width = (n * 20) + '%';
-    text.innerText = `Step ${n} of 5`;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (n === 5) prepareFinalReview();
   }
 
-  // Auto-advance Step 1
-  document.getElementById('btnModeEarn').onclick = function() {
-    mode = 'earn';
-    this.classList.add('active');
-    document.getElementById('btnModeRedeem').classList.remove('active');
-    document.getElementById('earnFields').style.display = 'block';
-    document.getElementById('redeemFields').style.display = 'none';
-    setTimeout(() => goStep(2), 250);
-  };
+  function setMode(nextMode) {
+    mode = nextMode;
+    document.getElementById("btnEarn").classList.toggle("active", mode === "earn");
+    document.getElementById("btnRedeem").classList.toggle("active", mode === "redeem");
+    document.getElementById("earnFields").style.display = mode === "earn" ? "block" : "none";
+    document.getElementById("redeemFields").style.display = mode === "redeem" ? "block" : "none";
+    document.getElementById("impactBox").classList.remove("show");
+    setTimeout(() => goStep(2), 180);
+  }
 
-  document.getElementById('btnModeRedeem').onclick = function() {
-    mode = 'redeem';
-    this.classList.add('active');
-    document.getElementById('btnModeEarn').classList.remove('active');
-    document.getElementById('earnFields').style.display = 'none';
-    document.getElementById('redeemFields').style.display = 'block';
-    setTimeout(() => goStep(2), 250);
-  };
+  document.getElementById("btnEarn").addEventListener("click", () => setMode("earn"));
+  document.getElementById("btnRedeem").addEventListener("click", () => setMode("redeem"));
 
-  // Step 2: Manual staff code input
-  function cleanStaffCodeInput() {
-    const input = document.getElementById('staffInput');
-    input.value = input.value
+  function normaliseStaffCode(value) {
+    let clean = String(value || "")
       .toUpperCase()
-      .replace(/[^A-Z0-9]/g, '');
-    document.getElementById('errStaff').style.display = 'none';
+      .replace(/^#+/, "")
+      .replace(/[^A-Z0-9]/g, "");
+
+    if (/^\d{3,}$/.test(clean)) clean = "SH" + clean;
+    return clean;
+  }
+
+  function cleanStaffCodeInput() {
+    const input = document.getElementById("staffCode");
+    input.value = normaliseStaffCode(input.value);
+    document.getElementById("errStaff").style.display = "none";
   }
 
   function checkStep2() {
     cleanStaffCodeInput();
-    const staffCode = document.getElementById('staffInput').value.trim();
-    if(staffCode === "") {
-      document.getElementById('errStaff').style.display = 'block';
-    } else { goStep(3); }
+    if (!document.getElementById("staffCode").value.trim()) {
+      document.getElementById("errStaff").style.display = "block";
+      return;
+    }
+    goStep(3);
   }
 
-  document.getElementById('staffInput').addEventListener('keydown', function(e) {
-    if(e.key === 'Enter') {
-      e.preventDefault();
+  document.getElementById("staffCode").addEventListener("input", () => {
+    document.getElementById("errStaff").style.display = "none";
+  });
+  document.getElementById("staffCode").addEventListener("blur", cleanStaffCodeInput);
+  document.getElementById("staffCode").addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+      event.preventDefault();
       checkStep2();
     }
   });
 
-  /* =========================================
-     FORMAT HARGA PINTAR (STEP 3)
-     ========================================= */
-  earnPriceInput.addEventListener('focus', function() {
-    if(rawPrice > 0) this.value = rawPrice;
+  earnPriceInput.addEventListener("focus", function () {
+    if (rawPrice > 0) this.value = rawPrice;
   });
 
-  earnPriceInput.addEventListener('input', function(e) {
-    let val = e.target.value.replace(/[^0-9.]/g, '');
+  earnPriceInput.addEventListener("input", function (event) {
+    const val = event.target.value.replace(/[^0-9.]/g, "");
     rawPrice = parseFloat(val) || 0;
-    calcWow();
+    calcImpact();
   });
 
-  earnPriceInput.addEventListener('blur', function() {
-    if(rawPrice > 0) {
-      this.value = rawPrice.toLocaleString('en-MY', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-    } else {
-      this.value = '';
-    }
+  earnPriceInput.addEventListener("blur", function () {
+    this.value = rawPrice > 0
+      ? rawPrice.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+      : "";
   });
 
-  /* =========================================
-     WOW FACTOR KIRAAN REAL-TIME
-     ========================================= */
-  function calcWow() {
-    const wowBox = document.getElementById('wowFactor');
-    
-    if (mode === 'earn') {
-      let pct = parseFloat(document.getElementById('earnPercent').value) || 0;
-      if (rawPrice > 0 && pct > 0) {
-        // Net Value calculation (after 5% deduction)
-        let netValue = (rawPrice * (pct / 100)) * 0.95;
-        wowBox.innerHTML = `🎉 Wow! S-Coin bernilai <strong>RM ${netValue.toLocaleString('en-MY', {minimumFractionDigits:2})}</strong> menanti anda!`;
-        wowBox.classList.add('visible');
+  function calcImpact() {
+    const box = document.getElementById("impactBox");
+
+    if (mode === "earn") {
+      const percent = parseFloat(document.getElementById("earnPercent").value) || 0;
+      if (rawPrice > 0 && percent > 0) {
+        const netValue = rawPrice * (percent / 100) * 0.95;
+        box.innerHTML = `Nilai S-Coin selepas deduction 5%: <strong>RM ${netValue.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>`;
+        box.classList.add("show");
       } else {
-        wowBox.classList.remove('visible');
+        box.classList.remove("show");
       }
     } else {
-      let pts = parseInt(document.getElementById('redeemPoints').value) || 0;
-      if (pts > 0) {
-        // 100 points = RM1
-        let rmValue = pts / 100;
-        wowBox.innerHTML = `🎉 Wow! Anda berjaya jimat <strong>RM ${rmValue.toLocaleString('en-MY', {minimumFractionDigits:2})}</strong>!`;
-        wowBox.classList.add('visible');
+      const points = parseInt(document.getElementById("redeemPoints").value, 10) || 0;
+      if (points > 0) {
+        const value = points / 100;
+        box.innerHTML = `Anggaran nilai redeem: <strong>RM ${value.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>`;
+        box.classList.add("show");
       } else {
-        wowBox.classList.remove('visible');
+        box.classList.remove("show");
       }
     }
   }
 
   function checkStep3() {
-    const err = document.getElementById('errStep3');
-    err.style.display = 'none';
-    
-    if (mode === 'earn') {
-      if(!document.getElementById('earnItem').value || rawPrice <= 0 || !document.getElementById('earnPercent').value) {
-        err.style.display = 'block'; return;
+    const err = document.getElementById("errStep3");
+    err.style.display = "none";
+
+    if (mode === "earn") {
+      const item = document.getElementById("earnItem").value.trim();
+      const percent = parseFloat(document.getElementById("earnPercent").value) || 0;
+      if (!item || rawPrice <= 0 || percent <= 0) {
+        err.style.display = "block";
+        return;
       }
     } else {
-      if(!document.getElementById('redeemItem').value || !document.getElementById('redeemPoints').value) {
-        err.style.display = 'block'; return;
+      const item = document.getElementById("redeemItem").value.trim();
+      const points = parseInt(document.getElementById("redeemPoints").value, 10) || 0;
+      if (!item || points <= 0) {
+        err.style.display = "block";
+        return;
       }
     }
+
     loadTemplates();
     goStep(4);
   }
 
-  /* =========================================
-     TEMPLATES & FETCH JSON (STEP 4)
-     ========================================= */
-  fetch('scoin_comments.json')
-    .then(response => response.json())
-    .then(data => {
-      allComments.earn = data.earn || [];
-      allComments.redeem = data.redeem || [];
+  fetch("scoin_comments.json")
+    .then(response => {
+      if (!response.ok) throw new Error("JSON not found");
+      return response.json();
     })
-    .catch(error => {
-      console.warn('Gagal load JSON. Guna fallback.');
-      allComments.earn = ["Baru beli {item} RM{price}. Tak sangka dapat cashback S-Coin {percent} worth {netValue}. Padu!"];
-      allComments.redeem = ["Tebus {item} guna {points} S-Coin. Jimat terus RM{value}. Memang berbaloi."];
+    .then(data => {
+      allComments.earn = Array.isArray(data.earn) ? data.earn : [];
+      allComments.redeem = Array.isArray(data.redeem) ? data.redeem : [];
+    })
+    .catch(() => {
+      console.warn("scoin_comments.json gagal dibaca. Fallback ringkas digunakan.");
+      allComments.earn = ["Beli {item} harga {price}, siap dapat S-Coin cashback {percent} bernilai {netValue}. Memang berbaloi." ];
+      allComments.redeem = ["Redeem {item} guna {points} S-Coin, terus jimat {value}. Memang puas hati." ];
     });
 
   function replacePlaceholders(template) {
-    if (mode === 'earn') {
-      let item = document.getElementById('earnItem').value;
-      let pct = parseFloat(document.getElementById('earnPercent').value) || 0;
-      let netValue = (rawPrice * (pct / 100)) * 0.95;
-      
-      return template
-        .replace(/{item}/g, item)
-        .replace(/{price}/g, 'RM' + rawPrice.toLocaleString('en-MY'))
-        .replace(/{percent}/g, pct + '%')
-        .replace(/{netValue}/g, 'RM' + netValue.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2}));
-    } else {
-      let item = document.getElementById('redeemItem').value;
-      let pts = parseInt(document.getElementById('redeemPoints').value) || 0;
-      let rmValue = pts / 100;
+    if (mode === "earn") {
+      const item = document.getElementById("earnItem").value.trim();
+      const percent = parseFloat(document.getElementById("earnPercent").value) || 0;
+      const netValue = rawPrice * (percent / 100) * 0.95;
 
       return template
         .replace(/{item}/g, item)
-        .replace(/{points}/g, pts.toLocaleString('en-MY'))
-        .replace(/{value}/g, 'RM' + rmValue.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2}));
+        .replace(/{price}/g, "RM" + rawPrice.toLocaleString("en-MY"))
+        .replace(/{percent}/g, percent + "%")
+        .replace(/{netValue}/g, "RM" + netValue.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
     }
+
+    const item = document.getElementById("redeemItem").value.trim();
+    const points = parseInt(document.getElementById("redeemPoints").value, 10) || 0;
+    const value = points / 100;
+
+    return template
+      .replace(/{item}/g, item)
+      .replace(/{points}/g, points.toLocaleString("en-MY"))
+      .replace(/{value}/g, "RM" + value.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
   }
 
   function loadTemplates() {
-    const list = document.getElementById('commentList');
-    list.innerHTML = '';
-    
-    let sourceArray = mode === 'earn' ? allComments.earn : allComments.redeem;
-    if(sourceArray.length === 0) return;
+    const list = document.getElementById("commentList");
+    const source = mode === "earn" ? allComments.earn : allComments.redeem;
+    list.innerHTML = "";
 
-    // Ambil 3 random komen
-    let shuffled = [...sourceArray].sort(() => 0.5 - Math.random());
-    let selected = shuffled.slice(0, 3);
+    if (!source.length) {
+      list.innerHTML = `<div class="comment-card">Template belum load. Pastikan fail <strong>scoin_comments.json</strong> berada dalam folder yang sama.</div>`;
+      return;
+    }
 
-    selected.forEach(tpl => {
-      let finalStr = replacePlaceholders(tpl);
-      let card = document.createElement('div');
-      card.className = 'comment-card';
-      card.innerText = finalStr;
-      
-      card.onclick = function() {
-        document.querySelectorAll('.comment-card').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        document.getElementById('finalCommentText').value = finalStr;
-        document.getElementById('errStep4').style.display = 'none';
-      };
+    const selected = [...source].sort(() => 0.5 - Math.random()).slice(0, 3);
+    selected.forEach(template => {
+      const finalText = replacePlaceholders(template);
+      const card = document.createElement("div");
+      card.className = "comment-card";
+      card.textContent = finalText;
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".comment-card").forEach(item => item.classList.remove("selected"));
+        card.classList.add("selected");
+        document.getElementById("finalCommentText").value = finalText;
+        document.getElementById("errStep4").style.display = "none";
+      });
       list.appendChild(card);
     });
   }
 
   function checkStep4() {
-    if(document.getElementById('finalCommentText').value.trim() === "") {
-      document.getElementById('errStep4').style.display = 'block';
-    } else { goStep(5); }
+    if (!document.getElementById("finalCommentText").value.trim()) {
+      document.getElementById("errStep4").style.display = "block";
+      return;
+    }
+    goStep(5);
   }
 
-  /* =========================================
-     STEP 5: PREVIEW & COPY
-     ========================================= */
-  function makeStaffHashtag(code) {
-    const cleanCode = code
-      .trim()
-      .toUpperCase()
-      .replace(/[^A-Z0-9]/g, '');
-    return cleanCode ? "#" + cleanCode : "";
+  function makeStaffHashtag() {
+    const code = normaliseStaffCode(document.getElementById("staffCode").value);
+    return code ? "#" + code : "";
   }
 
   function prepareFinalReview() {
-    const mainText = document.getElementById('finalCommentText').value;
-    const staffCode = document.getElementById('staffInput').value;
-    const staffTag = makeStaffHashtag(staffCode);
-    
-    document.getElementById('mockReviewText').innerText = mainText;
-    // Menggabungkan hashtag rasmi dengan hashtag staf
-    document.getElementById('mockHashtags').innerText = staffTag ? (MANDATORY_HASHTAGS + " " + staffTag) : MANDATORY_HASHTAGS;
+    const mainText = document.getElementById("finalCommentText").value.trim();
+    const staffTag = makeStaffHashtag();
+    document.getElementById("mockReviewText").textContent = mainText;
+    document.getElementById("mockHashtags").textContent = staffTag
+      ? `${MANDATORY_HASHTAGS} ${staffTag}`
+      : MANDATORY_HASHTAGS;
   }
 
   function copyAndProceed() {
-    const mainText = document.getElementById('mockReviewText').innerText;
-    const tags = document.getElementById('mockHashtags').innerText;
-    const combinedReview = mainText + "\n\n" + tags;
+    const review = document.getElementById("mockReviewText").textContent;
+    const tags = document.getElementById("mockHashtags").textContent;
+    const combined = `${review}\n\n${tags}`;
 
-    navigator.clipboard.writeText(combinedReview).then(() => {
-      document.getElementById('successModal').classList.add('show');
-    }).catch(err => {
-      alert("Sistem keselamatan browser anda tidak membenarkan butang copy ini. Sila highlight dan copy teks tersebut secara manual.");
+    navigator.clipboard.writeText(combined).then(() => {
+      document.getElementById("successModal").classList.add("show");
+    }).catch(() => {
+      alert("Browser tidak benarkan auto-copy. Sila copy manual daripada preview review.");
     });
   }
 
   function openGoogleMaps() {
-    window.open(GOOGLE_MAPS_URL, '_blank');
+    window.open(GOOGLE_MAPS_URL, "_blank");
     closeModal();
   }
 
   function closeModal() {
-    document.getElementById('successModal').classList.remove('show');
+    document.getElementById("successModal").classList.remove("show");
   }
-
 </script>
 </body>
 </html>
