@@ -47,3 +47,17 @@ Keep the JSON filename, version `8`, category names and placeholder names unchan
 For staff-specific links, append `?staff=SH12345` to your website URL, replacing the example with the real staff code.
 
 This ZIP is ready to publish; downloading it alone does not create a live GitHub Pages site.
+
+## Warranty comment update — 21 September 2026
+
+The five service/warranty categories each have 50 rewritten comments in casual Malaysian Malay. S-Coin earning and redemption comments remain unchanged.
+
+- **RW when buying:** eligible small appliances with paid RW have an extra year, for 2 years in total. Comments describe replacement with a new unit 1-to-1 on the spot if the item breaks during coverage, based on its original purchase value.
+- **RW claims:** comments say the item broke and the customer received that new-unit replacement. The previous separate replacement-outcome choices were removed because 1-to-1 and original-price value describe the same benefit.
+- **PlusOne® when buying:** members receive a free additional year for selected eligible products after the manufacturer warranty. One manufacturer year becomes two total; two manufacturer years become three.
+- **PlusOne® claims:** comments describe an item breaking after the manufacturer warranty expired, with the free additional member year still active and a covered repair saving the customer money.
+- **Service:** longer comments cover help carrying items, promotions, suitable product suggestions, friendliness, demonstrations and payment choices. Customers should select and edit only wording that matches their actual experience.
+
+Warranty scenarios follow the outlet details supplied for this update. They are not an independent audit of all Senheng terms.
+
+To update an existing GitHub Pages site, replace both `index.html` and `gs004-review-comments.json` with the files from this ZIP and commit to the publishing branch. The embedded backup comments have also been updated.
