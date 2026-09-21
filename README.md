@@ -38,7 +38,7 @@ The earning calculation uses the supplied 5% maintenance deduction. For example,
 
 The Google destination retains the Place ID supplied in the original GS004 file: `ChIJV_UaAZG6yDERBfK-vHdQRu8`. Confirm the correct outlet appears before distributing the link.
 
-No API keys, server or paid services are needed. The HTML contains backup comments if the JSON cannot load. Staff and form details are kept in this browser session; suggestion history is kept in this browser only. No customer information is sent to a database by this helper.
+No API keys, server or paid services are needed. The HTML contains backup comments if the JSON cannot load. Staff and form details are kept in this browser session. The selected review draft and its context are saved in localStorage so they can be restored after refresh; suggestion history is kept in this browser only. No customer information is sent to a database by this helper.
 
 ## Editing comments later
 
@@ -61,3 +61,31 @@ The five service/warranty categories each have 50 rewritten comments in casual M
 Warranty scenarios follow the outlet details supplied for this update. They are not an independent audit of all Senheng terms.
 
 To update an existing GitHub Pages site, replace both `index.html` and `gs004-review-comments.json` with the files from this ZIP and commit to the publishing branch. The embedded backup comments have also been updated.
+
+## S-Coin and interface update — 21 September 2026
+
+Revision: `2026-09-21-scoin-detail-pass`. Version remains 8, with 7 categories and exactly 50 comments per category. The full mandatory hashtag list, staff tag, Google Place ID and all four warranty narratives are unchanged.
+
+### New comments
+
+- All 50 earning comments were rewritten with varied lengths and customer situations: learning about S-Coin from staff, deliberately choosing cashback, comparing rewards with immediate discounts, understanding the RM value, and planning to redeem selected items free later.
+- All 50 redemption comments were rewritten around choosing useful items, replacing old items, checking balances, full redemption without cash top-up, and planning future redemptions. Choose only a comment that reflects the customer's actual experience.
+- The redemption RM value includes its equivalent number of S-Coin automatically. RM259 is 25,900 S-Coin.
+- A few service-comment openings were varied; warranty comments remain unchanged.
+
+### New controls
+
+- Service reviews skip the details screen; progress becomes two steps.
+- Valid `?staff=SH12345` links hide staff entry and show the staff code. Without a valid code, staff entry remains required.
+- Copy and open Google, copy only, open Google only, preview copying and per-card copying are available. Every copy includes the full mandatory hashtags and staff tag. The helper never submits a review.
+- A selected draft is saved locally with its category and details, and restored after refresh. Changed transaction details invalidate the old review.
+- Each card has its own replacement button. Length filters use raw template length: short up to 200 characters, medium 201–300, long over 300.
+- Service-topic filters cover carrying goods, promotions/S-Coin, instalments, demos and after-sales.
+- Mobile category selection uses a compact dropdown.
+- The full preview shows exactly what will be copied, including hashtags.
+- All four warranty categories require confirmation before copying. Changing the wording or selecting another comment clears confirmation. Confirmation must be given again after refresh.
+- Staff URL mode includes a Reset history button that clears suggestions history only, preserving the draft and other data.
+- Earning calculations show the 5% fee, net RM value and S-Coin count. Redemption has a live RM-to-coin converter and quick value buttons.
+- JSON loading uses revision-based cache busting and validates categories, counts, placeholders and mandatory hashtags; invalid data falls back to the embedded backup.
+
+Upload both updated `index.html` and `gs004-review-comments.json` to the repository root and commit. No new dependencies or build commands are required.
